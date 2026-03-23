@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoneyNet — Threat Intelligence Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="scanline"></div>
+<div class="noise"></div>
+
+<div class="shell">
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <span class="logo-icon">⬡</span>
+            <div class="logo-text">
+                <span class="logo-title">HONEYNET</span>
+                <span class="logo-sub">THREAT INTELLIGENCE SYSTEM v2.4.1</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="status-dot"></div>
+            <span class="status-label">SYSTEM ACTIVE</span>
+            <div class="clock" id="clock">--:--:--</div>
+        </div>
+    </header>
+
+    <!-- ALERT BANNER -->
+    <div class="alert-banner" id="alertBanner">
+        <span class="alert-icon">⚠</span>
+        <span class="alert-text" id="alertText">INITIALIZING THREAT ANALYSIS ENGINE...</span>
+    </div>
+
+    <!-- TOP STATS ROW -->
+    <div class="stats-row">
+        <div class="stat-card" style="--accent:#ff003c">
+            <div class="stat-label">TOTAL INTRUSION ATTEMPTS</div>
+            <div class="stat-value" id="total">
+                <span class="counter" data-target="0">0</span>
+            </div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width:0%" id="bar-total"></div></div>
+            <div class="stat-meta">↑ HONEYPOT PORT 2222</div>
+        </div>
+        <div class="stat-card" style="--accent:#ffaa00">
+            <div class="stat-label">UNIQUE ATTACKER IPs</div>
+            <div class="stat-value" id="uniqueIps">
+                <span class="counter" data-target="0">0</span>
+            </div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width:0%" id="bar-ips"></div></div>
+            <div class="stat-meta">↑ DISTINCT SOURCES</div>
+        </div>
+        <div class="stat-card" style="--accent:#00ffe5">
+            <div class="stat-label">TOP CREDENTIAL</div>
+            <div class="stat-value sm" id="topUser">—</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width:0%" id="bar-user"></div></div>
+            <div class="stat-meta">↑ MOST ATTEMPTED USERNAME</div>
+        </div>
+        <div class="stat-card" style="--accent:#b000ff">
+            <div class="stat-label">THREAT LEVEL</div>
+            <div class="stat-value threat" id="threatLevel">—</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width:0%" id="bar-threat"></div></div>
+            <div class="stat-meta" id="threatMeta">↑ RISK ASSESSMENT</div>
+        </div>
+    </div>
+
+    <!-- MIDDLE ROW -->
+    <div class="mid-row">
+
+        <!-- USERNAME BREAKDOWN -->
+        <div class="panel" id="usernamePanel">
+            <div class="panel-header">
+                <span class="panel-title">USERNAME ATTACK VECTORS</span>
+                <span class="panel-badge">LIVE</span>
+            </div>
+            <div class="username-list" id="userList"></div>
+        </div>
+
+        <!-- IP BREAKDOWN -->
+        <div class="panel" id="ipPanel">
+            <div class="panel-header">
+                <span class="panel-title">SOURCE IP ANALYSIS</span>
+                <span class="panel-badge">TRACKED</span>
+            </div>
+            <div class="username-list" id="ipList"></div>
+        </div>
+
+    </div>
+
+    <!-- LOG FEED -->
+    <div class="panel log-panel">
+        <div class="panel-header">
+            <span class="panel-title">LIVE INTRUSION LOG FEED</span>
+            <span class="panel-badge blink">● RECORDING</span>
+        </div>
+        <div class="log-feed" id="logFeed">
+            <div class="log-line init">> SYSTEM BOOT — THREAT MONITOR ONLINE</div>
+            <div class="log-line init">> LOADING ATTACK DATABASE...</div>
+        </div>
+    </div>
+
+    <footer>
+        <span>HONEYNET DASHBOARD © 2026 — UNAUTHORIZED ACCESS MONITORED & LOGGED</span>
+        <span id="footerStats">AWAITING DATA...</span>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

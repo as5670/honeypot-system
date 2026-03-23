@@ -1,0 +1,14 @@
+{
+    "total_attempts": 9,
+    "unique_ips": 1,
+    "ip_data": {
+        "127.0.0.1": 9
+    },
+    "username_data": {
+        "admin": 5,
+        "am": 1,
+        "anu": 1,
+        "aksh": 1,
+        "anil": 1
+    }
+}

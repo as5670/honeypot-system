@@ -2,6 +2,7 @@
 //  HONEYNET DASHBOARD — script.js
 // ═══════════════════════════════════════════════
 
+
 // ── CLOCK ──────────────────────────────────────
 function updateClock() {
     const now = new Date();
@@ -97,7 +98,7 @@ function getThreatLevel(total) {
 function loadData() {
     addLog("> FETCHING data.json...", "init");
 
-    fetch("../data.json")
+    fetch("../data.json?v=" + Date.now())
         .then(r => {
             if (!r.ok) throw new Error("HTTP " + r.status);
             return r.json();
@@ -165,7 +166,7 @@ function loadData() {
                 userList.appendChild(div);
                 setTimeout(() => { div.querySelector(".user-bar-fill").style.width = pct + "%"; }, 200 + i * 80);
                 addLog(
-                    '<span class="ts">' + new Date().toISOString().slice(11,19) + '</span>' +
+                    '<span class="ts">' + new Date().toLocaleTimeString('en-IN', {timeZone:'Asia/Kolkata', hour12:false}) + '</span>' +
                     '<span class="ip">USERNAME</span>' +
                     '<span class="user">' + user + '</span>— ' + count + ' attempt(s)',
                     count > 3 ? "danger" : "warn"
@@ -192,7 +193,7 @@ function loadData() {
                 ipList.appendChild(div);
                 setTimeout(() => { div.querySelector(".user-bar-fill").style.width = pct + "%"; }, 200 + i * 80);
                 addLog(
-                    '<span class="ts">' + new Date().toISOString().slice(11,19) + '</span>' +
+                    '<span class="ts">' + new Date().toLocaleTimeString('en-IN', {timeZone:'Asia/Kolkata', hour12:false}) + '</span>' +
                     '<span class="ip">' + ip + '</span>— ' + count + ' login attempt(s) recorded',
                     "warn"
                 );
@@ -221,7 +222,7 @@ function simulateLogReplay(total) {
     const count  = Math.max(total, 1);
     for (let i = 0; i < count; i++) {
         setTimeout(() => {
-            const ts   = new Date(Date.now() - (count - i) * 15000).toISOString().slice(11,19);
+            const ts   = new Date(Date.now() - (count - i) * 15000).toLocaleTimeString('en-IN', {timeZone:'Asia/Kolkata', hour12:false});
             const user = users[i % users.length];
             const hash = hashes[i % hashes.length];
             addLog(
@@ -239,4 +240,5 @@ function simulateLogReplay(total) {
 setTimeout(() => addLog("> MATRIX RENDERER ONLINE", "init"), 200);
 setTimeout(() => addLog("> THREAT ENGINE ARMED", "init"), 500);
 setTimeout(() => addLog("> CONNECTING TO HONEYPOT LOG...", "init"), 900);
+setTimeout(loadData, 1200);
 setTimeout(loadData, 1200);
